@@ -1,0 +1,17 @@
+server:
+  port: 9000
+
+app-config:
+  jwt:
+    base64Secret: YWxsZ295b3VAKUApMTE5MTQzMSkpOCkpeWFubmlzaGluaXNzdXBlcmdlbml1c3Rsc3RqcnJic2Rod2pkYW5ydGxzZ3lkbmpz
+    tokenExpirationTime: 8
+    refreshTokenExpirationTime: 48
+
+  timezone:
+    defaultTimezone: 'UTC'
+    convertTimezone: 'Asia/Seoul'
+
+
+
+
+
