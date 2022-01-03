@@ -325,7 +325,8 @@ server:
 
 #### 3.3.4.2. H2 자동 설정을 위한 H2ConsoleAutoConfiguration.java 클래스를 통해 자동 설정 관련 어노테이션이 어떻게 사용될까?
 
-*  H2ConsoleAutoConfiguration
+* H2ConsoleAutoConfiguration
+
 ```java
 @Configuration(proxyBeanMethods = false)
 @ConditionalOnWebApplication(type = Type.SERVLET) // 1)
@@ -453,6 +454,7 @@ https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#features.e
 * @ConfigurationProperties 어노테이션을 사용하면 다양한 타입의 프로퍼티를 매핑할 수 있음 
 * 기본적으로 prefix를 사용하여 바인딩  
 * application.yml에 아래과 같이 프로퍼티를 추가
+
 ```yaml
 app-config:
   jwt:
@@ -464,7 +466,9 @@ app-config:
     defaultTimezone: 'UTC'
     convertTimezone: 'Asia/Seoul'
 ```
+
 * TimezoneProperties
+
 ```java
 @Getter
 @Setter
@@ -476,6 +480,7 @@ public class TimezoneProperties {
 }
 ```
 * JwtProperties
+
 ```java
 @Getter
 @Setter
@@ -493,25 +498,11 @@ public class JwtProperties {
   private Duration tokenExpirationTime = Duration.ofHours(8);
   @DurationUnit(ChronoUnit.HOURS)
   private Duration refreshTokenExpirationTime = Duration.ofHours(8);
-}@Getter
-@Setter
-@Valid
-@Configuration
-@ConfigurationProperties(prefix="app-config.jwt")
-public class JwtProperties {
-  private String base64Secret;
-  /**
-   * JWT Token 만료 시간
-   */
-  @DurationUnit(ChronoUnit.HOURS)
-  @Min(1)
-  @Max(48)
-  private Duration tokenExpirationTime = Duration.ofHours(8);
-  @DurationUnit(ChronoUnit.HOURS)
-  private Duration refreshTokenExpirationTime = Duration.ofHours(8);
 }
 ```
+
 * PropertyTest.java
+
 ```java
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -535,44 +526,6 @@ public class PropertyTest {
   }
 }
 ```
-### 4.5.1. @ConfigurationProperties의 유연한 바인딩
-* 프로퍼티값을 객체에 바인딩할 때 필드를 카멜표기법으로 선언하고 프로퍼티의 키는 다양한 형식(소문자, 카멜표기법, 케밥표기법)으로 선언하여 바인딩이 가능한 것을 의미
-* application.yml에 아래과 같이 프로퍼티를 추가
-```yaml
-fruit-property.color-name: red
-fruit-property.color_name: red
-fruit-property.colorName: red
-fruit-property.colorname: red
-```
-* /test/java/com/naon/study/yaml/FruitProperties.java
-```java
-@Component
-@ConfigurationProperties("fruit-property")
-public class FruitProperties {
-    private String colorName;
-
-    public String getColorName() {
-        return colorName;
-    }
-
-    public void setColorName(String colorName) {
-        this.colorName = colorName;
-    }
-}
-```
-* /test/java/com/naon/study/yaml/PropertyTest.java 에 추가
-```java
-@ExtendWith(SpringExtension.class)
-@SpringBootTest
-public class PropertyTest {
-  ...
-  @Autowired
-  FruitProperties fruitProperties;
-  
-  ...
-
-}
-```
 
 ### 4.5.2 프로퍼티 문서화
 https://docs.spring.io/spring-boot/docs/current/reference/html/configuration-metadata.html#configuration-metadata.annotation-processor
@@ -589,6 +542,7 @@ https://docs.spring.io/spring-boot/docs/current/reference/html/configuration-met
 </dependency>
 ```
 * Gradle
+
 ```groovy
 dependencies {
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
