@@ -137,18 +137,20 @@ pom.xml 내부를 살펴보면, 다음과 같은 부분이 있다
 
 ## 3.3. 자동 설정 이해하기
 > start에 있는 설정이 어떻게 자동으로 적용되는걸까?
-### 3.3.1. @SpringBootApplication
-```java
-@SpringBootApplication
-public class SpringBootStudyApplication {
 
+### 3.3.1. @SpringBootApplication
+
+```java
+* @SpringBootApplication
+public class SpringBootStudyApplication {
     public static void main(String[] args) {
         SpringApplication.run(SpringBootStudyApplication.class, args);
     }
-
 }
 ```
-@SpringBootApplication = @SpringBootConfiguration + @EnableAutoConfiguration + @ComponentScan(
+* 
+* @SpringBootApplication = @SpringBootConfiguration + @EnableAutoConfiguration + @ComponentScan(
+
 ```java
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
@@ -184,6 +186,7 @@ public @interface SpringBootApplication {
 
 ### 3.3.2. @EnableAutoConfiguration
 > @EnableAutoConfiguration은 자동 설정의 핵심 어노테이션
+
 ```java
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
@@ -297,20 +300,20 @@ server:
 #### 3.3.4.1. 자동 설정을 위한 조건 어노테이션
 
 | 조건 어노테이션  | 적용 조건 | 
-|--------------------|:---:|
-**@ConditionalOnBean** | 해당 Bean 이나 이름이 미리 Bean 팩토리에 포함되어 있는 경우
-**@ConditionalOnClass** | 해당 클래스가 classpath에 있는 경우
-@ConditionalOnCloudPlatform | 해당 클라우드 플랫폼이 활용 상태인 경우
-@ConditionalOnExpression | SpEL에 의존하는 조건인 경우
-@ConditionalOnJava | JVM 버전이 일치하는 경우
-@ConditionalOnJndi | JNDI가 사용 가능하고 특정 위치에 있는 경우
-@ConditionalOnMissingBean | 해당 Bean 이나 이름이 미리 Bean 팩토리에 포함되어 있지 않은 경우
-@ConditionalOnMissingClass | 해당 클래스가 classpath에 없는 경우
-@ConditionalOnNotWebApplication | 웹 애플리케이션이 아닌 경우
-@ConditionalOnProperty |특정 프로퍼티가 지정한 값을 갖는 경우
-@ConditionalOnResource | 특정 Resource가 classpath에 있는 경우
-@ConditionalOnSingleCandidate |지정한 Bean이 이미 Bean 팩토리에 포함되어 있고 단일 후보자로 지정 가능한 경우 
-@ConditionalOnWebApplication | 웹 애플리케이션인 경우
+|--------------------|----|
+**@ConditionalOnBean** | 해당 Bean 이나 이름이 미리 Bean 팩토리에 포함되어 있는 경우 
+**@ConditionalOnClass** | 해당 클래스가 classpath에 있는 경우 
+@ConditionalOnCloudPlatform | 해당 클라우드 플랫폼이 활용 상태인 경우 
+@ConditionalOnExpression | SpEL에 의존하는 조건인 경우 
+@ConditionalOnJava | JVM 버전이 일치하는 경우 
+@ConditionalOnJndi | JNDI가 사용 가능하고 특정 위치에 있는 경우 
+@ConditionalOnMissingBean | 해당 Bean 이나 이름이 미리 Bean 팩토리에 포함되어 있지 않은 경우 
+@ConditionalOnMissingClass | 해당 클래스가 classpath에 없는 경우 
+@ConditionalOnNotWebApplication | 웹 애플리케이션이 아닌 경우 
+@ConditionalOnProperty | 특정 프로퍼티가 지정한 값을 갖는 경우 
+@ConditionalOnResource | 특정 Resource가 classpath에 있는 경우 
+@ConditionalOnSingleCandidate | 지정한 Bean이 이미 Bean 팩토리에 포함되어 있고 단일 후보자로 지정 가능한 경우
+@ConditionalOnWebApplication | 웹 애플리케이션인 경우 
 
 #### 3.3.4.1. 자동 설정을 위한 순서 어노테이션입니다.
 

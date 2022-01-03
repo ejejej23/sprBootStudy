@@ -49,14 +49,37 @@ services:
         - TZ=Asia/Seoul
 ```
 
-# 2. Flyway
-## 2.1. 개발자들의 흔한 실수
-* DB 스카가 변경됨
-    * 서버에 반영시 DB 스카마 변경 안함
-        * 서버가 안뜬다.
-        * 로컬에서 잘 동작하는 소스가 버그
-* 해결하는 방안이 있을까?
-    * DB 스키마도 형상 관리를 해보자
+# 2. DB도 형상 관리를 해보자(Flyway)
+* 개발자들의 흔한 실수
+  * DB 스카가 변경됨
+      * 서버에 반영시 DB 스카마 변경 안함
+          * 서버가 안뜬다.
+          * 로컬에서 잘 동작하는 소스가 버그
+  * 해결하는 방안이 있을까?
+      * DB도 형상 관리를 해보자
+
+## 2.2 형상 관리 흐름
+![](images/flyway_spec.png.png)
+* Axel과 Christian이 별개로 DDL을 만들고
+  * 서버로 배포할 때 자동화 빌드 과정에서 함께 통합하여 DDL을 실행
+
+## 2.4. 의존성 및 환경 설정
+```xml
+
+```
+### 2.5. 파일명 작성 규칙    
+![](images/flywaynaming.png.png)
+* Prefix - V, U, R 중 하나를 입
+  * V는 Verion
+  * U는 undo
+  * R은 Repeatable
+* Version
+  * 버전 정보입니다. 정수, 소수, 날짜 등이 가능
+* Seperator - 
+  * __ ( underscore 2개를 이용 )
+* Description 
+  * 추가되는 설명
+  * _ (underscore)가 space를 대신
 
   
   
