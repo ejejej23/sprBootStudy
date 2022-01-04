@@ -77,7 +77,7 @@ server:
 
 # 2. Spring Boot 기반 프로젝트 만들기
 ## 2.1. 앞으로 만들 프로젝트 구조
-![프로젝트 구조](./images/study_spec.png)
+![프로젝트 구조](images/study_spec.png)
 * ①세션 레디스(Session Redis), H2(또는 MySQL) : 세션을 관리하는NoSQL(레디스)과 기본 데이 터 저장을 위한 RDB(H2, MySQL) 사용 
 * ② 스프링 부트 웹 MVC(Spring Boot Web MVC): 기본적인 커뮤니티페이지
 * ③ 스프링 부트 세션 레디스(Spring Boot Session Redis): 레디스를 사용한 세션 관리 
@@ -95,8 +95,6 @@ https://start.spring.io 에  접속하여 Spring Initalizr 사용
 
 # 3. 스프링 부트 동작원리
 > spring-boot-starter-web 의존성만 추가 하였는데 내장톰켓도 설정되고 수많은 의존성이 추가되었는데 어떻게 설정되었는지 알고 있으면 자동 설정 커스터 마이징시 많은 도움이 때문에 자종설정의 원리와 스트링 부트가 어떻에 의존성을 관리하는지 설명합니다.
-
-### 내부 구조 
 
 ## 3.1. 스프링 부트 스타터 들여다보기 
 * 스프링에서는 의존 관계를 개발자가 일일이 설정해 번거로웠지만 스프링 부트에서는 스타터를 이용해 간편하게 설정할 수 있음
@@ -126,7 +124,9 @@ pom.xml 내부를 살펴보면, 다음과 같은 부분이 있다
 ```
 * spring-boot-starter-parent 는 스프링 프레임워크가 제공해주는 것으로, 여기에 활용할 수 있는 많은 라이브러리 정보가 '이미' 담겨져 있다.
   * 정확히는 spring-boot-starter-parent 가 dependency 로 들어오는 외부 라이브러리들의 버전 및 각 라이브러리들의 의존성을 관리한다.
-* spring-boot-starter-parent.pom 에 가보면 org.springframework.boot 의 version 에 따른 각 dependency 라이브러리들의 version 이 정의되어 있다.
+* spring-boot-starter-parent.pom
+  * org.springframework.boot 의 version 에 따른 각 dependency 라이브러리들의 version 이 정의되어 있다.
+    * 
 ```xml
   <parent>
     <groupId>org.springframework.boot</groupId>
@@ -501,9 +501,26 @@ implementation 'org.springframework.boot:spring-boot-starter-undertow'
 https://godekdls.github.io/Spring%20Boot/howto.embedded-web-servers/
 
 
+### 3.4.6. 독립적으로 실행 가능한 JAR(WAR)
 
- 
-  
+#### 3.4.6.1. 내부구조
+```shell
+mvn clean package
+java -jar {jar file}
+```
+* Java에는 Jar안에 들어있는 Jar 파일(라이브러리들)을 읽을 수 있는 표준 방법이 없다.
+* 예전 
+  * Jar안에 들어있는 모든 Class를 합쳐 하나의 Jar로 만들어 사용했다. (우버 Jar)
+    * 이러한 경우에 어떤 라이브러리를 사용하는지 알 수 없고, 서로 다른 Jar에서 파일 이름이 같은데 내용이 다른 경우에도 문제가 있었다.
+* Spring Boot
+  * Jar 파일을 BOOT-INF/lib에 모두 모아 놓고 org/springframework/boot/loader에 Jar를 읽을 수 있는 파일(loader)들을 만들어 두었다. 
+    * Jar파일을 읽어들이는 로더는 JarFile.class이다.
+    * Jar 파일을 실행하는 (main method를 실행) 것은 JarLauncher.class로 Jar 파일을 실행하는 class 이다.
+  * MENIFEST.MF에는 다음과 같은 정보가 있다. 
+  * 원래 Main-Class에는 main method를 가진 것을 설정하는데 JarLauncher를 설정하고 Start-Class에 개발자가 만든 main method가 있는 것을 설정하여 실행되도록 되어있다.
+
+https://docs.spring.io/spring-boot/docs/current/reference/html/executable-jar.html
+
 # 4. Spring Boot 프로퍼티 설정
 
 ## 4.1. .properties 파일
@@ -682,8 +699,7 @@ spring.datasource.username=[DB접속 USER NAME]
 spring.datasource.password=[DB접속 PASSWORD]
 ```
 
-## 2.1. 환경에 따른  Profiles 전략 
-
+## 4.6. 환경에 따른  Profiles 전략
 |  환경  | Profile    |
 |:----:|:-----------|
 테스트 | test
@@ -733,5 +749,41 @@ spring:
 https://docs.spring.io/spring-boot/docs/current/reference/html/configuration-metadata.html#configuration-metadata
 https://godekdls.github.io/Spring%20Boot/howto.properties-and-configuration/
 
+# 5.Spring Boot DevTools
+
+https://godekdls.github.io/Spring%20Boot/developing-with-spring-boot/#68-developer-tools
+
+## 5.1. 의존성 추가
+
+* maven
+```xml
+dependency>
+    <groupId>org.springframework.boot</groupId>
+	   <artifactId>spring-boot-devtools</artifactId>
+	  <scope>runtime</scope>
+	  <optional>true</optional>
+</dependency>
+```
+
+* gradle 
+
+```groovy
+developmentOnly("org.springframework.boot:spring-boot-devtools")
+```
+
+# 5.2. Automatic Restart
+* 파일 수정 후 저장을 하면, Classpath에 존재하는 파일의 변경을 감지하고, 자동으로 서버를 재시작
+  * 설정을 통해 원하는 디렉터리만을 트리거로 설정할 수도 있음 
+  
+# 5.3 Live Reload
+* 소스에 변화가 있을 때 application이 자동으로 브라우저 새로 고침을 트리거 할 수 있게 해주는 프로토콜.
+* livereload.com에서 Chrome, Firefox, Safari용 플러그인을 설치하여 사용할 수 있음
+  * npm의 hot-reload-server처럼 새로고침없이 바로 갱신됩
+  
+# 5.4. Global Settings
+* spring에 대한 공통 설정을 할 수 있음.
+* $HOME/.config/spring-boot 디렉토리에 공통 설정을 담아 놓으면 됩
+
+# 5.5. Remote Applications
 
 
