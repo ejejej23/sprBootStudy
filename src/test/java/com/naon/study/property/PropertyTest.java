@@ -1,16 +1,13 @@
-package com.naon.study.yaml;
+package com.naon.study.property;
 
 import static org.assertj.core.api.Assertions.*;
 
-import com.naon.study.property.JwtProperties;
-import com.naon.study.property.TimezoneProperties;
 import java.time.Duration;
-import java.util.List;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 

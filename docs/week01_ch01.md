@@ -1,14 +1,4 @@
-# 1.소개
-
-**스프링 부트 레퍼런스에서 정의**
-
-[Spring Boot Reference Documentation](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#getting-started)
-
-Spring Boot helps you to create stand-alone, **production-grade** Spring-based applications that you can run. We take an **opinionated view** of the Spring platform and third-party libraries, so that you can get started with minimum fuss. Most Spring Boot applications need very little Spring configuration.
-
-* production-grade, opinionated view에 주목
-* (Spring 팀의 전문가의 스프링 플랫폼과 타사 라이브러리에 대한 경해가 반영된 간단한 설정으로 프로덕션 환경에서 실행할 수 있는 어플리케이션 개발을 쉽고 빠르게 할 수 있음
-  
+# 1. 스프링 부트
 ## 1.1. 특징
 * **독립 실행이 가능한 스프링 애플리케이션 개발**(Embedded Tomcat, Jetty, Undertow를 사용)
 * **통합 Starter를 제공하여 Maven/Gradle 구성을 간소화**
@@ -18,19 +8,29 @@ Spring Boot helps you to create stand-alone, **production-grade** Spring-based a
 * **Spring Actuator 제공**(애플리케이션의 모니터링과 관리를 위해 사용)*
 
 ## 1.2 스프링 부트에 대한 오해
-* 스프링 부트는 스프링 프레임워크과 전혀 다르다? (No)
-  * 스프링 부트는 스프링 프레임워크 내에서 설정을 간소화한 도
+* 스프링 부트는 스프링 프레임워크과 다른 프로젝트이다. (No)
+  * 스프링 부트는 스프링 프레임워크 내에서 설정을 간소화한 스프링 프레임워크의 일부
     * 스프링을 모르면 스프링 부트로 개발 항 수 없음
-  * 따라서 스프링 부트를 특징에 맞게 잘 사용한다면 스프링 프레임워크의 장점까지 더하여 빠르게 서비스를 개발할 수 있음
-* 스프링 부트는 토이 프로젝트 용도이고 특히 내장 WAS는 느리고 설정을 커스터이이징 할수 없다  (No)
-  * 스ᄑ링 부트 레퍼런스 정의 확인
-  * 나온톡 서버 설정 일부
-    * 설정을 커스터 아이징 가능하고 최적화된 기본 설정값 제공함
-        * SSL 설정둥 다양한 커스터 마이징이 가능함
-          * https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html#application-properties.server
-        * tomcat Max Thread는 기본값이 200 (나온톡에서는 1,000으로 설정)
-          * 스프링 재단의 전문가들이 설정으로 기본설정으로만 상용환경에서 충분한 성능 보장
-            * tomcat 을 직접 설치하면 설정이 설정 최적화는 필수임
+      * 따라서 교욕 진행을 위하여 푈요하다고 생각하는 개념은 설명
+    * 스프링 부트를 특징에 맞게 잘 사용한다면 스프링 프레임워크의 장점까지 더하여 빠르게 서비스를 개발할 수 있음
+  * 스프링 부트는 토이 프로젝트 용도이고 특히 내장 WAS는 느리고 설정을 커스터이이징 할수 없다  (No)
+    * 스프링 부트 레퍼런스 정의 확인
+      * [Spring Boot Reference Documentation](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#getting-started)
+      * Spring Boot helps you to create stand-alone, **production-grade** Spring-based applications that you can run. 
+      * We take an **opinionated view** of the Spring platform and third-party libraries, so that you can get started with minimum fuss. 
+      * Most Spring Boot applications need very little Spring configuration.
+    
+    * production-grade, opinionated view에 주목
+      * 스프링 부트는 스프링 기반 애플리케이션을 독립형, 프로덕션 레벨로 만들고 실행할 수 있게 도와준다. 
+      * 스프링 부트는 스프링 플랫폼과 써드 파티 라이브러리들의 설계 철학을 최대한 수용하기 때문에, 큰 고민 없이 바로 시작할 수 있다. 
+      * 스프링 부트 애플리케이션 대부분은 아주 적은 양의 스프링 설정으로도 충분하다.
+    * 나온톡 서버 설정 일부
+      * 설정을 커스터 아이징 가능하고 최적화된 기본 설정값 제공함
+          * SSL 설정둥 다양한 커스터 마이징이 가능함
+            * https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html#application-properties.server
+          * tomcat Max Thread는 기본값이 200 (나온톡에서는 1,000으로 설정)
+            * 스프링 재단의 전문가들이 설정으로 기본설정으로만 상용환경에서 충분한 성능 보장
+              * tomcat 을 직접 설치하면 설정이 설정 최적화는 필수임
 
 ```yaml
 server:
@@ -181,8 +181,9 @@ public @interface SpringBootApplication {
   * classpath에 지정된 내용을 기반으로 설정 자동화를 수행합니다. 특별한 설정값을 추가하지 않은 경우 기본값으로 동작
 
 * 3)**@ComponentScan**
-  * 특정 패키지 경로를 기반으로 @Configuration에서 사용할 @Component 설정 클래스를 찾습니다. 
-  * @ComponentScan의 basePackages 프로퍼티값에 별도로 경로를 설정하지 않으면 @ComponentScan이 위치한 패키지가 basePackages의 루트 경로로 설정됨
+  * 자기 자신(애노테이션이 달린)을 가진 클래스부터 시작해서 하위 패키지까지 모두 스캔하여 @Component 뿐만 아니라 @Configuration, @Repository, @Service, @Controller, @RestController가 달린 클래스를 찾아서 빈으로 등록한다.
+    * 이 때 자기 자신에게 @Configuration과 같은 애노테이션이 붙어 있다면 자신도 빈으로 등록이 된다.
+  * @ComponentScan의 basePackages 프로퍼티값에 별도로 경로를 설정하지 않으면 @ComponentScan이 위치한 패키지가 basePackages의 루트 경로로 설정됨(자기 자신보다 상위에 있는 패키지나 클래스는 읽을 수 없다는 의미)
 
 ### 3.3.2. @EnableAutoConfiguration
 > @EnableAutoConfiguration은 자동 설정의 핵심 어노테이션
@@ -392,8 +393,115 @@ public class H2ConsoleAutoConfiguration {
     spring.h2.console.enabled 값이 true 일 때 적용
   * 4)위의 조건이 부합하여 자동 설정이 적용될 때 H2ConsoleProperties.class 타입으로 H2 관련 프로퍼티값을 매핑하여 사용하게 됩 
     * 기존의 스프링 프레임워크에서는 일일이 설정해야 했지만 스프링 부트에서는 미리 설정한 방식대로 애플리케이션에 적용하도록 정의되어 있음
-    
+ 
+## 3.4. 내장 WAS의 이해   
+* 스프링 부트는 서버가 아니다!
+* 스프링 부트 자체는 그냥 내장 서블릿 컨테이너나 스프링 프레임워크를 사용하기 쉽게 해주는 툴이다.
+  * Tomcat, Netty, Jetty, Undertow이고, 이들은 자바 코드로 서버를 만들 수 있는 기능을 제공한다.
+  * 기본적으로 의존성에 Tomcat이 들어와있다.
+
+
+## 3.4.1. 스프링 부트의 자동 설정
+* 스프링 부트가 Servlet Container를 띄워주는 원리 
+  * 자동설정과 관련이 있는데, 의존성 중에서 autoconfigure에 있는 spring.factories를 열어서 자동 설정 파일 중 ServletWebServerFactoryAutoConfiguration이 있다.
+
+### 3.4.2. ServletWebServerFactoryAutoConfiguration
+
+```java
+@Configuration(proxyBeanMethods = false)
+@AutoConfigureOrder(Ordered.HIGHEST_PRECEDENCE)
+@ConditionalOnClass(ServletRequest.class) // 1)
+@ConditionalOnWebApplication(type = Type.SERVLET)
+@EnableConfigurationProperties(ServerProperties.class)
+@Import({ ServletWebServerFactoryAutoConfiguration.BeanPostProcessorsRegistrar.class,
+        ServletWebServerFactoryConfiguration.EmbeddedTomcat.class,
+        ServletWebServerFactoryConfiguration.EmbeddedJetty.class,
+        ServletWebServerFactoryConfiguration.EmbeddedUndertow.class }) // 2)
+public class ServletWebServerFactoryAutoConfiguration {
+  ...
+  @Bean
+  @ConditionalOnClass(name = "org.apache.catalina.startup.Tomcat")
+  public TomcatServletWebServerFactoryCustomizer tomcatServletWebServerFactoryCustomizer(
+          ServerProperties serverProperties) {
+    return new TomcatServletWebServerFactoryCustomizer(serverProperties);
+  }
+  ...
+}
+```
+
+* 1)ServletRequest라는 클래스가 클래스패스에 있으면 자동 설정
+* 2). import된 configuration을 보면 BeanPostProcessorsRegistrar, EmbeddedTomcat, EmbeddedJetty, EmbeddedUndertow가 있음.
+  * TomcatServletWebServerFactory 
+    * ConditionalOnClass에 의해서 톰캣용 자동 설정 파일이 읽어지고 톰캣이 사용됨.
+    * EmbeddedWebServerFactoryCustomizerAutoConfiguration 참조
+      * TomcatServletWebServerFactoryCustomizer (서버 커스터마이징)
+
+### 3.4.3. DispatcherServletAutoConfiguration
+
+```java
+@AutoConfigureOrder(Ordered.HIGHEST_PRECEDENCE)
+@Configuration(proxyBeanMethods = false)
+@ConditionalOnWebApplication(type = Type.SERVLET)
+@ConditionalOnClass(DispatcherServlet.class)
+@AutoConfigureAfter(ServletWebServerFactoryAutoConfiguration.class)
+public class DispatcherServletAutoConfiguration {
+  ...
+}
+```
+* Http 서블릿을 상속해서 만든 스프링 MVC의 핵심 클래스인 DispatcherServlet을 만들고 서블릿 컨테이너에 등록한다.
+* 왜 둘은 분리되어 있을까?
+  * 서블릿 컨테이너는 설정에 따라서 달라질 수 있지만 서블릿은 변하지 않는다. 
+  * DispatcherServlet은 어떠한 서블릿 컨테이너를 쓰든 상관없이 서블릿을 만든 다음에 현재의 서블릿 컨테이너에 등록하는 과정이 DispatcherServletAutoConfiguration 안에서 이루어진다.
+
+### 3.4.4. 다른 WAS로 변경
+#### 3.4.4.1. spring-boot-starter-tomcat 의존성 제거
+* maven
+
+```xml
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-web</artifactId>
+  <exclusions>
+    <exclusion>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-tomcat</artifactId>
+    </exclusion>
+  </exclusions>
+</dependency>
+```
+* gradle
+
+```groovy
+implementation ('org.springframework.boot:spring-boot-starter-web') {
+  exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+}
+```
+
+#### 3.4.4.2. undertow로 변경
+* 스프링 부트 2.0 부터 피보탈에서 밀고 있는 비동기 WAS
+* maven
+
+```xml
+<dependency> 
+  <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-undertow</artifactId>
+</dependency>
+```
+
+* gradle
+
+```groovy
+implementation 'org.springframework.boot:spring-boot-starter-undertow'
+```
+
+### 3.4.5. 내장 WAS 커스터 마이징
+https://godekdls.github.io/Spring%20Boot/howto.embedded-web-servers/
+
+
+
+ 
+  
 # 4. Spring Boot 프로퍼티 설정
+
 ## 4.1. .properties 파일
 ```properties
 server.port: 80
@@ -447,7 +555,8 @@ https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#features.e
 * 메타 정보 생성
 
 ### 4.4.2. @Value
-  * SpEL 을 사용할 수 있지만...
+  * SpEL 을 사용할 수 있
+  * 지만...
   * 위에 있는 기능들은 전부 사용 못합
 
 ## 4.5. @ConfigurationProperties 사용하기
@@ -549,6 +658,76 @@ dependencies {
 }
 ```
 
-### 4.6. 환경에 따른 Profile 전략 
+### 4.6. Spring Profiles
+
+>Spring Profiles는 애플리케이션 설정을 특정 환경에서만 적용되게 하거나, 환경 별(local, test, production 등)로 다르게 적용할 때 사용된다.
+
+#### 환경 마다 설정이 상이
+* 개발 환경
+
+```properties
+spring.datasource.url=mysql://[개발환경IP]:3306/[개발DB]
+spring.datasource.username=[DB접속 USER NAME]
+spring.datasource.password=[DB접속 PASSWORD]
+```
+* 운영 환경
+
+```properties
+spring.datasource.url=mysql://[실제운영서버IP]:3306/[실제DB]
+spring.datasource.username=[DB접속 USER NAME]
+spring.datasource.password=[DB접속 PASSWORD]
+```
+
+## 2.1. 환경에 따른  Profiles 전략 
+
+|  환경  | Profile    |
+|:----:|:-----------|
+테스트 | test
+로컬 | local
+개발서버 | develop
+검증서버 | staging 
+운영서버  | production 
+
+* application.yml 
+  * 공통으로 사용하는 설정
+  * 내용이 많으면 사용 용도 단위로 분리될 수 있으나 통상 단일 파일로 사용함
+* application_${profile}.yml
+  * 환경마다 다르게 사용하는 섫정
+    * application-test.yml
+  * 내용이 많으면 사용 용도 단위로 분리될 수 있음
+    * DB : application-develop-db.yml
+    * redis : application-develop-redis.yml
+    
+#### application.yml
+* 그룹을 사용하지 않을 경우  
+
+```yaml
+spring:
+ config:
+  activate:
+   on-profile: test
+```
+
+* 그룹을 사용할 경우
+
+```yaml
+spring:
+ config:
+  activate:
+   on-profile: test
+  group:
+    test:
+      - test_db
+      - test_redis
+    local:
+      - local_db
+      - local_redis
+```
+* spring.config.activate.on-profiles 대신 -Dspring.profiles.active으로 활성화 할 수 있음
+  * property 우선 순위에 따라 spring.config.activate.on-profiles가 오버라이딩 됨
+
+https://docs.spring.io/spring-boot/docs/current/reference/html/configuration-metadata.html#configuration-metadata
+https://godekdls.github.io/Spring%20Boot/howto.properties-and-configuration/
+
 
 
