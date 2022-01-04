@@ -2,7 +2,7 @@
 * 스프링 부트 레퍼런스
   * 영몬 : https://docs.spring.io/spring-boot/docs/current/reference/html/
   * 한글 : https://godekdls.github.io/Spring%20Boot/contents/
-  * 
+  
 ## 1.1. 특징
 * **독립 실행이 가능한 스프링 애플리케이션 개발**(Embedded Tomcat, Jetty, Undertow를 사용)
 * **통합 Starter를 제공하여 Maven/Gradle 구성을 간소화**
