@@ -77,7 +77,7 @@ server:
 
 # 2. Spring Boot 기반 프로젝트 만들기
 ## 2.1. 앞으로 만들 프로젝트 구조
-![프로젝트 구조](images/study_spec.png)
+![프로젝트 구조](./images/study_spec.png)
 * ①세션 레디스(Session Redis), H2(또는 MySQL) : 세션을 관리하는NoSQL(레디스)과 기본 데이 터 저장을 위한 RDB(H2, MySQL) 사용 
 * ② 스프링 부트 웹 MVC(Spring Boot Web MVC): 기본적인 커뮤니티페이지
 * ③ 스프링 부트 세션 레디스(Spring Boot Session Redis): 레디스를 사용한 세션 관리 
