@@ -9,6 +9,9 @@
     * branch 명 : week01 ~ week10
 * branch를 checkout하여 진랭하면 됨
 
+* 만들어볼 프로젝트
+    * https://htmlpreview.github.io/?https://github.com/hojinDev/restdocs-sample/blob/master/html/step3.html
+
 ### **1주차**
 
 - **Spring Boot 동작원리**
