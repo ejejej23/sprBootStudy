@@ -7,7 +7,6 @@
   * 실전에 가까운 예제로 진행
 * 매주 교육 당일에 교육 자료와 소스 코드를 branch에 공유 합니다.
     * branch 명 : week01 ~ week10
-* branch를 checkout하여 진랭하면 됨
 
 * 만들어볼 프로젝트
     * https://htmlpreview.github.io/?https://github.com/hojinDev/restdocs-sample/blob/master/html/step3.html
