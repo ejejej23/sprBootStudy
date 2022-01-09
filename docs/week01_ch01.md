@@ -145,7 +145,7 @@ pom.xml 내부를 살펴보면, 다음과 같은 부분이 있다
 ### 3.3.1. @SpringBootApplication
 
 ```java
-* @SpringBootApplication
+@SpringBootApplication
 public class SpringBootStudyApplication {
     public static void main(String[] args) {
         SpringApplication.run(SpringBootStudyApplication.class, args);

@@ -1,3 +1,14 @@
+spring:
+  config:
+    activate:
+      on-profile: local
+#  profiles:
+#    group:
+#      local:
+#        - local-db
+#      test:
+#        - test-db
+
 server:
   port: 9000
 
