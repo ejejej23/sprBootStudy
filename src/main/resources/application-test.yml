@@ -1,1 +1,33 @@
 sample.meaaage: test
+
+
+
+#spring:
+#  jpa:
+#    defer-datasource-initialization: true
+#    database-platform: org.hibernate.dialect.H2Dialect
+#    hibernate:
+#      ddl-auto: none
+#    properties:
+#      hibernate:
+#        #  dialect: org.hibernate.dialect.MariaDBDialect
+#        format_sql: true
+#        use_sql_comments: true
+#
+#    show-sql: false
+#
+#  datasource:
+#    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false;MODE=MYSQL
+#    driverClassName: org.h2.Driver
+#    username: sa
+#    password:
+#
+#  sql:
+#    init:
+#      mode: embedded
+#
+#  flyway:
+#    enabled: false
+#  h2:
+#    console:
+#      enabled: false
