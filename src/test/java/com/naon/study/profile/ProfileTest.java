@@ -17,17 +17,21 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @Slf4j
-@ActiveProfiles("local")
+@ActiveProfiles("test")
 public class ProfileTest {
     @Value("${sample.meaaage}")
     String sampleMessage;
 
-//    @Value("${sample.db}")
-//    String sampleDb;
+    @Value("${sample.db}")
+    String sampleDb;
+
+    @Value("${sample.redis}")
+    String sampleRedis;
 
     @Test
     public void ProfileTest() throws Exception {
         log.info("messages = {}", sampleMessage);
-//        log.info("db = {}", sampleDb);
+        log.info("db = {}", sampleDb);
+        log.info("redis = {}", sampleRedis);
     }
 }

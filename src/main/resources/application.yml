@@ -1,11 +1,13 @@
 spring:
   profiles:
     active: local
-#    group:
-#      local:
-#        - local-db
-#      test:
-#        - test-db
+    group:
+      local:
+        - local-db
+        - redis
+      test:
+        - test-db
+        - redis
 
 server:
   port: 9000
