@@ -1,8 +1,6 @@
 spring:
-  config:
-    activate:
-      on-profile: local
-#  profiles:
+  profiles:
+    active: local
 #    group:
 #      local:
 #        - local-db

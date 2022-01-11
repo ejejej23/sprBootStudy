@@ -30,5 +30,5 @@ public class JwtProperties {
     @Max(48)
     private Duration tokenExpirationTime = Duration.ofHours(8);
     @DurationUnit(ChronoUnit.HOURS)
-    private Duration refreshTokenExpirationTime = Duration.ofHours(8);
+    private Duration refreshTokenExpirationTime = Duration.ofHours(48);
 }

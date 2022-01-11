@@ -1,7 +1,5 @@
 sample.meaaage: test
 
-
-
 #spring:
 #  jpa:
 #    defer-datasource-initialization: true
