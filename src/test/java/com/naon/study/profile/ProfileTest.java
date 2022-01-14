@@ -17,7 +17,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @Slf4j
-@ActiveProfiles("local")
+@ActiveProfiles("test")
 public class ProfileTest {
     @Value("${sample.meaaage}")
     String sampleMessage;

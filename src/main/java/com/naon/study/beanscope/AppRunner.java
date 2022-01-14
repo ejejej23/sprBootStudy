@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 /**
  * @author yannishin
  */
-@Component
+//@Component
 public class AppRunner implements ApplicationRunner {
     // Step 1
 //    @Autowired

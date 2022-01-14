@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 /**
  * @author yannishin
  */
-@Repository
+//@Repository
 @Slf4j
 public class SampleRepositorty {
     public void doSomthing() {
