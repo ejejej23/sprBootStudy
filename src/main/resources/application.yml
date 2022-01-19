@@ -1,26 +1,20 @@
+server:
+  port: 8080
+
 spring:
   profiles:
     active: local
     group:
       local:
         - local-db
-        - redis
+#        - redis
       test:
         - test-db
-        - redis
+#        - redis
 
-server:
-  port: 8080
 
-app-config:
-  jwt:
-    base64Secret: YWxsZ295b3VAKUApMTE5MTQzMSkpOCkpeWFubmlzaGluaXNzdXBlcmdlbml1c3Rsc3RqcnJic2Rod2pkYW5ydGxzZ3lkbmpz
-    refreshTokenExpirationTime: 48
-    token-expiration-time: 8
 
-  timezone:
-    defaultTimezone: 'UTC'
-    convertTimezone: 'Asia/Seoul'
+
 
 
 

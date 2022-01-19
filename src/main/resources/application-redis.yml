@@ -1,8 +1,6 @@
-sample.redis: common
-
-#spring:
-#  redis:
-#    host: localhost
-#    port: 6379
-#    database: 0
-#    password: PASSword..00
+spring:
+  redis:
+    host: localhost
+    port: 6379
+    database: 0
+    password: PASSword..00
