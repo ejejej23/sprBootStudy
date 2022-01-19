@@ -13,4 +13,9 @@ services:
         - MARIADB_USER=sample
         - MARIADB_PASSWORD=sample2021
         - MARIADB_DATABASE=sample_db
-        - TZ=Asia/Seoul
+
+  redis:
+    build: ./redis
+    image:  naon-redis
+    ports:
+      - "6379:6379"
