@@ -1,7 +1,12 @@
 server:
   port: 8080
-
+  servlet:
+    encoding:
+      force: true
 spring:
+  mvc:
+    format:
+      date-time: iso
   profiles:
     active: local
     group:
