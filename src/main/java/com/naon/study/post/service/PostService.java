@@ -25,8 +25,6 @@ package com.naon.study.post.service;
 import com.naon.framework.exception.NotFoundException;
 import com.naon.study.post.domain.Post;
 import com.naon.study.post.domain.repositopry.PostRepository;
-import com.naon.study.post.dto.PostDto;
-import com.naon.study.post.dto.PostDto.ResponseList;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -42,35 +40,35 @@ import org.springframework.transaction.annotation.Transactional;
 public class PostService {
     private final PostRepository postRepository;
 
-    public PostDto.Response createPost(final PostDto.Create dto) {
-        return PostDto.Response.of(postRepository.save(dto.toEntity()));
-    }
-
-    @Transactional(readOnly = true)
-    public PostDto.Response findPost(Long id) {
-        return PostDto.Response.of(
-                postRepository.findById(id).orElseThrow(NotFoundException::new)
-        );
-    }
-
-    public List<ResponseList> findPosts(PostDto.Search dto) {
-        return postRepository.findByTitleContainsAndPostDtAfter(dto.getTitle(), dto.getPostDt()).stream()
-                .map(PostDto.ResponseList::of)
-                .collect(Collectors.toList());
-    }
-
-    public PostDto.Response updatePost(final Long id, final PostDto.Update dto) {
-        Post post = postRepository.findById(id).orElseThrow(NotFoundException::new);
-        return PostDto.Response.of(post.updatePost(dto));
-    }
-
-    public PostDto.Response updateTitle(final Long id, final String title) {
-        Post post = postRepository.findById(id).orElseThrow(NotFoundException::new);
-        return PostDto.Response.of(post.updateTitle(title));
-    }
-
-    public void deletePost(final Long id) {
-        Post post = postRepository.findById(id).orElseThrow(NotFoundException::new);
-        postRepository.delete(post);
-    }
+//    public PostDto.Response createPost(final PostDto.Create dto) {
+//        return PostDto.Response.of(postRepository.save(dto.toEntity()));
+//    }
+//
+//    @Transactional(readOnly = true)
+//    public PostDto.Response findPost(Long id) {
+//        return PostDto.Response.of(
+//                postRepository.findById(id).orElseThrow(NotFoundException::new)
+//        );
+//    }
+//
+//    public List<ResponseList> findPosts(PostDto.Search dto) {
+//        return postRepository.findByTitleContainsAndPostDtAfter(dto.getTitle(), dto.getPostDt()).stream()
+//                .map(PostDto.ResponseList::of)
+//                .collect(Collectors.toList());
+//    }
+//
+//    public PostDto.Response updatePost(final Long id, final PostDto.Update dto) {
+//        Post post = postRepository.findById(id).orElseThrow(NotFoundException::new);
+//        return PostDto.Response.of(post.updatePost(dto));
+//    }
+//
+//    public PostDto.Response updateTitle(final Long id, final String title) {
+//        Post post = postRepository.findById(id).orElseThrow(NotFoundException::new);
+//        return PostDto.Response.of(post.updateTitle(title));
+//    }
+//
+//    public void deletePost(final Long id) {
+//        Post post = postRepository.findById(id).orElseThrow(NotFoundException::new);
+//        postRepository.delete(post);
+//    }
 }

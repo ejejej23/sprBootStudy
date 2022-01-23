@@ -24,7 +24,6 @@ package com.naon.study.post.domain;
 
 //import com.naon.study.post.dto.PostDto;
 import com.naon.framework.base.BaseTimeEntity;
-import com.naon.study.post.dto.PostDto;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -70,13 +69,13 @@ public class Post extends BaseTimeEntity implements Persistable<Long> {
         this.postDt = postDt;
     }
 
-    public Post updatePost(final PostDto.Update dto) {
-        this.title = dto.getTitle();
-        this.content = dto.getContent();
-        this.author = dto.getAuthor();
-
-        return this;
-    }
+//    public Post updatePost(final PostDto.Update dto) {
+//        this.title = dto.getTitle();
+//        this.content = dto.getContent();
+//        this.author = dto.getAuthor();
+//
+//        return this;
+//    }
 
     public Post updateTitle(final String title) {
         this.title = title;
