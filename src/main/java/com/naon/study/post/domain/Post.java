@@ -22,7 +22,7 @@
 
 package com.naon.study.post.domain;
 
-import com.naon.study.post.dto.PostDto;
+//import com.naon.study.post.dto.PostDto;
 import com.naon.framework.base.BaseTimeEntity;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
@@ -47,7 +47,7 @@ import org.springframework.data.domain.Persistable;
 public class Post extends BaseTimeEntity implements Persistable<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long posId;
 
     @Column(nullable = false)
     private String title;
@@ -69,17 +69,17 @@ public class Post extends BaseTimeEntity implements Persistable<Long> {
         this.postDt = postDt;
     }
 
-    public Post updatePost(final PostDto.Update dto) {
-        this.title = dto.getTitle();
-        this.content = dto.getContent();
-        this.author = dto.getAuthor();
-
-        return this;
-    }
+//    public Post updatePost(final PostDto.Update dto) {
+//        this.title = dto.getTitle();
+//        this.content = dto.getContent();
+//        this.author = dto.getAuthor();
+//
+//        return this;
+//    }
 
     @Override
     public Long getId() {
-        return id;
+        return posId;
     }
 
     @Override

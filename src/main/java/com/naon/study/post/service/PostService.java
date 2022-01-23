@@ -22,12 +22,6 @@
 
 package com.naon.study.post.service;
 
-import com.naon.study.post.domain.Post;
-import com.naon.study.post.domain.repositopry.PostRepository;
-import com.naon.study.post.dto.PostDto;
-import com.naon.framework.exception.NotFoundException;
-import java.util.List;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,34 +33,32 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class PostService {
-    private final PostRepository postRepository;
-
-    public PostDto.Response createPost(final PostDto.Create dto) {
-        return PostDto.Response.of(postRepository.save(dto.toEntity()));
-    }
-
-    @Transactional(readOnly = true)
-    public PostDto.Response findPost(Long id) {
-        return PostDto.Response.of(
-                postRepository.findById(id).orElseThrow(NotFoundException::new)
-        );
-    }
-
-    public List<PostDto.ResponseList> findPosts(PostDto.Search dto) {
-        return postRepository.findByTitleContainsAndPostDtAfter(dto.getTitle(), dto.getPostDt()).stream()
-                .map(PostDto.ResponseList::of)
-                .collect(Collectors.toList());
-    }
-
-    public PostDto.Response updatePost(final Long id, final PostDto.Update dto) {
-        Post post = postRepository.findById(id).orElseThrow(NotFoundException::new);
-        return PostDto.Response.of(post.updatePost(dto));
-    }
-
-    public void deletePost(final Long id) {
-        Post post = postRepository.findById(id).orElseThrow(NotFoundException::new);
-        postRepository.delete(post);
-
-//        postRepository.deleteById(id);
-    }
+//    private final PostRepository postRepository;
+//
+//    public PostDto.Response createPost(final PostDto.Create dto) {
+//        return PostDto.Response.of(postRepository.save(dto.toEntity()));
+//    }
+//
+//    @Transactional(readOnly = true)
+//    public PostDto.Response findPost(Long id) {
+//        return PostDto.Response.of(
+//                postRepository.findById(id).orElseThrow(NotFoundException::new)
+//        );
+//    }
+//
+//    public List<PostDto.ResponseList> findPosts(PostDto.Search dto) {
+//        return postRepository.findByTitleContainsAndPostDtAfter(dto.getTitle(), dto.getPostDt()).stream()
+//                .map(PostDto.ResponseList::of)
+//                .collect(Collectors.toList());
+//    }
+//
+//    public PostDto.Response updatePost(final Long id, final PostDto.Update dto) {
+//        Post post = postRepository.findById(id).orElseThrow(NotFoundException::new);
+//        return PostDto.Response.of(post.updatePost(dto));
+//    }
+//
+//    public void deletePost(final Long id) {
+//        Post post = postRepository.findById(id).orElseThrow(NotFoundException::new);
+//        postRepository.delete(post);
+//    }
 }
