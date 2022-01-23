@@ -73,14 +73,12 @@ def generate(out, className, fields) {
  * SUCH DAMAGE.
  *
  * For more information on this product, please see<<www.naonsoft.com>>
- */lease see www.allgoyou.com
  */
     """
 
     out.println "package $packageName;"
     out.println ""
-    out.println "import com.allgoyou.core.annotations.Comment;"
-    out.println "import com.allgoyou.core.base.BaseEntityModel;"
+    out.println "import com.naon.framework.annotation.Comment;"
     out.println "import ${packageRootName}.core.utils.IdGenerator;"
     out.println "import ${packageParentName}.dto.${entityName}Dto;"
 
@@ -142,13 +140,14 @@ def generate(out, className, fields) {
             idType = it.type
         }
     }
-    out.println "public class $entityName implements BaseEntityModel, Persistable<${idType}> {"
+    out.println "public class $entityName implements Persistable<${idType}> {"
     out.println ""
     def idName = ""
 
     fields.eachWithIndex{it,index->
         if(index < 1) {
             out.println "  @Id"
+            out.println "  @GeneratedValue(strategy = GenerationType.IDENTITY)"
             idName = it.name
         }
     }
@@ -156,7 +155,7 @@ def generate(out, className, fields) {
     fields.each() {
         if (it.isJson > 0) out.println "  @Type(type = \"jsonb\")"
         if (it.name == "regDt") out.println "  @CreatedDate"
-        if (it.name == "modDt") out.println "  @LastModifiedDate"
+        if (it.name == "updDt") out.println "  @LastModifiedDate"
         if (it.annos != "") out.println "  ${it.annos}"
         if (it.comment != null) out.println "  @Comment(value = \"${it.comment}\")"
         if (it.isEnum > 0) out.println "  @Enumerated(EnumType.STRING)"
@@ -171,7 +170,7 @@ def generate(out, className, fields) {
 
     def paramBuilder = []
     fields.eachWithIndex{it,index->
-        if(index > 0 && it.name != "regDt" && it.name != "modDt") {
+        if(index > 0 && it.name != "regDt" && it.name != "updDt") {
             assignBuilder += "    this.${it.name} = ${it.name};\r\n"
             paramBuilder.add("${it.type} ${it.name}");
             assignUpdate += "    Optional.ofNullable(dto.get${javaName(it.name, true)}()).ifPresent(${it.name} -> this.${it.name} = ${it.name});\r\n"
@@ -188,11 +187,11 @@ def generate(out, className, fields) {
     out.println "    return this;"
     out.println "  }"
 
-    out.println ""
-    out.println "  @PrePersist"
-    out.println "  public void prePersist() {"
-    out.println "      this.${idName} = Optional.ofNullable(this.${idName}).orElseGet(IdGenerator::generate16UniqueId);"
-    out.println "  }"
+//    out.println ""
+//    out.println "  @PrePersist"
+//    out.println "  public void prePersist() {"
+//    out.println "      this.${idName} = Optional.ofNullable(this.${idName}).orElseGet(IdGenerator::generate16UniqueId);"
+//    out.println "  }"
 
     out.println ""
     out.println "  @Override"

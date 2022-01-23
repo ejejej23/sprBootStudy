@@ -79,7 +79,6 @@ def generate(out, className, fields) {
     """
 
     out.println "package $packageName;"
-    out.println "import ${packageRootName}.core.utils.IdGenerator;"
     out.println "import ${packageParentName}.domain.${entityName};"
     out.println "import javax.validation.constraints.NotEmpty;"
     out.println "import lombok.AccessLevel;"
@@ -88,7 +87,7 @@ def generate(out, className, fields) {
     out.println "import lombok.AllArgsConstructor;"
     out.println "import lombok.NoArgsConstructor;"
     out.println "import lombok.Setter;"
-    out.println "import com.querydsl.core.annotations.QueryProjection;"
+//    out.println "import com.querydsl.core.annotations.QueryProjection;"
 
     Set types = new HashSet()
 
@@ -135,7 +134,7 @@ def generate(out, className, fields) {
     def assignBuilder = "                  ";
 
     fields.eachWithIndex{it,index->
-        if(index > 0 && it.name != "regDt" && it.name != "modDt") {
+        if(index > 0 && it.name != "regDt" && it.name != "updDt") {
             fieldRequest += "      private ${it.type} ${it.name};"
             if (it.comment != null)  fieldRequest += "//${it.comment}"
             fieldRequest += "\r\n"
@@ -216,7 +215,7 @@ def generate(out, className, fields) {
     out.println fieldResponse
     out.println ""
     out.println "       @Builder"
-    out.println "       @QueryProjection"
+//    out.println "       @QueryProjection"
     out.println "       public ResponseList(${paramResponse}) {"
     out.println  assignResponse
     out.println "       }"
