@@ -1,33 +1,33 @@
 sample.meaaage: local
 
-#spring:
-#  jpa:
-#    hibernate:
-#      ddl-auto: none
-#    show-sql: false
-#    properties:
-#      hibernate:
-#        jdbc:
-#          batch_size: 200
-#        order_inserts: true
-#        order_updates: true
-#
-#  datasource:
-#    url: jdbc:mariadb://localhost:3306/sample_db
-#    username: sample
-#    password: sample2021
-#    hikari:
-#      data-source-properties:
-#        rewriteBatchedStatements: true
-#      idle-timeout: 3000
-#      maximum-pool-size: 10
-#      minimum-idle: 5
-#
-#  flyway:
-#    enabled: true
-#  h2:
-#    console:
-#      enabled: false
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: 200
+        order_inserts: true
+        order_updates: true
+
+  datasource:
+    url: jdbc:mariadb://localhost:3306/sample_db
+    username: sample
+    password: sample2021
+    hikari:
+      data-source-properties:
+        rewriteBatchedStatements: true
+      idle-timeout: 3000
+      maximum-pool-size: 10
+      minimum-idle: 5
+
+  flyway:
+    enabled: true
+  h2:
+    console:
+      enabled: false
 
 
 
