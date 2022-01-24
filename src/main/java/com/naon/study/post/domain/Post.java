@@ -31,6 +31,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.naon.study.post.dto.PostDto;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -69,13 +71,13 @@ public class Post extends BaseTimeEntity implements Persistable<Long> {
         this.postDt = postDt;
     }
 
-//    public Post updatePost(final PostDto.Update dto) {
-//        this.title = dto.getTitle();
-//        this.content = dto.getContent();
-//        this.author = dto.getAuthor();
-//
-//        return this;
-//    }
+    public Post updatePost(final PostDto.Update dto) {
+        this.title = dto.getTitle();
+        this.content = dto.getContent();
+        this.author = dto.getAuthor();
+
+        return this;
+    }
 
     public Post updateTitle(final String title) {
         this.title = title;
