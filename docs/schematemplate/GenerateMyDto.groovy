@@ -84,7 +84,7 @@ def generate(out, className, fields) {
     out.println "import lombok.AccessLevel;"
     out.println "import lombok.Builder;"
     out.println "import lombok.Getter;"
-    out.println "import lombok.AllArgsConstructor;"
+//    out.println "import lombok.AllArgsConstructor;"
     out.println "import lombok.NoArgsConstructor;"
     out.println "import lombok.Setter;"
 //    out.println "import com.querydsl.core.annotations.QueryProjection;"
